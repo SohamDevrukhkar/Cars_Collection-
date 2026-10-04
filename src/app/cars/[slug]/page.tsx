@@ -70,8 +70,10 @@ export default function CarDetailPage() {
           slug={car.slug}
           frameCount={car.frameCount}
           framePath={car.framePath}
+          frames={car.frames}
           framing={carFraming}
           responsiveFraming={carFraming.responsive}
+          narratives={car.narratives}
           className="absolute inset-0 w-full h-full"
           debug={showDebug}
           scrollDistance={scrollDistance}
@@ -102,8 +104,11 @@ export default function CarDetailPage() {
         {/* Hero Typography - Mobile-Optimized Clean Vertical Hierarchy */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
+          animate={{
+            opacity: Math.max(0, 1 - sequenceProgress * 6.5),
+            y: sequenceProgress > 0.04 ? -16 * sequenceProgress : 0,
+          }}
+          transition={{ duration: 0.3 }}
           className="absolute inset-0 flex flex-col justify-between pointer-events-none px-4 sm:px-6 py-6 sm:py-10 z-20 max-w-7xl mx-auto w-full"
         >
           {/* TOP OF STACK: Chapter & Brand */}

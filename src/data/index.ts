@@ -2,8 +2,25 @@ import type { Car } from '@/types';
 import { CARS } from './cars';
 import { CARS_PART2 } from './cars-part2';
 import { CARS_PART3 } from './cars-part3';
+import { padFrameNumber } from '@/lib/utils';
 
-export const ALL_CARS: Car[] = [...CARS, ...CARS_PART2, ...CARS_PART3];
+export function generateCarFrameManifest(
+  framePath: string,
+  frameCount: number = 240,
+  extension: string = 'jpg'
+): string[] {
+  return Array.from(
+    { length: frameCount },
+    (_, i) => `${framePath}/frame-${padFrameNumber(i + 1, 4)}.${extension.replace(/^\./, '')}`
+  );
+}
+
+const RAW_CARS: Car[] = [...CARS, ...CARS_PART2, ...CARS_PART3];
+
+export const ALL_CARS: Car[] = RAW_CARS.map((car) => ({
+  ...car,
+  frames: car.frames || generateCarFrameManifest(car.framePath, car.frameCount, car.frameExtension || 'jpg'),
+}));
 
 export function getCarBySlug(slug: string): Car | undefined {
   return ALL_CARS.find((car) => car.slug === slug);

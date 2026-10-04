@@ -145,6 +145,8 @@ export interface Car {
   };
   framePath: string;
   frameCount: number;
+  frameExtension?: string;
+  frames?: string[];
   heroImage: string;
   galleryImages: string[];
   interiorImage: string;
