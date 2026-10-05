@@ -2,7 +2,6 @@
 
 A premium, mobile-first digital platform for curating and acquiring the world's most exceptional vehicles. THE COLLECTION delivers a cinematic, responsive experience across all devices, from iPhone SE to desktop displays, with seamless state management and bespoke customization flows.
 
-https://cars-collection-six.vercel.app
 
 ## 🎬 Overview
 
